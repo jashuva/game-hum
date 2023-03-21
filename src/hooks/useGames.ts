@@ -2,14 +2,21 @@ import { useState, useEffect } from 'react';
 import { CanceledError } from 'axios';
 import apiClient from '../services/apiClient';
 
-interface GamesResponse {
-  count: number;
-  results: Game[];
+export interface Platform {
+  id: number;
+  name: string;
+  slug: string;
 }
+
 export interface Game {
   id: number;
   name: string;
   background_image: string;
+  parent_platforms: { platform: Platform }[];
+}
+interface GamesResponse {
+  count: number;
+  results: Game[];
 }
 
 const useGames = () => {
